@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TWEVE LIVE — Updated</title>
+  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="flex flex-col min-h-screen">
+  <!-- Sticky Player: starts hidden ALWAYS. Shows only after selecting a Live TV channel OR an Online Movie -->
+  <div id="playerContainer" class="bg-black sticky top-0 z-50 p-4 hidden">
+    <div class="w-full max-w-4xl mx-auto aspect-video rounded-lg shadow-lg overflow-hidden relative">
+      <div id="player" class="w-full h-full"></div>
+      <div id="playerLoading" class="hidden absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+        <div class="loading-spinner"></div>
+        <p class="text-white ml-3">Inapakia...</p>
+      </div>
+    </div>
+    <div class="text-center mt-2">
+      <button onclick="document.getElementById('playerContainer').classList.add('hidden')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded-md text-sm">
+        Funga Player
+      </button>
+    </div>
+  </div>
+
+  <!-- Pages -->
+  <main class="flex flex-col flex-grow pb-20">
+    <!-- HOME PAGE -->
+    <section id="homePage" class="flex flex-col items-center justify-center flex-grow p-6 text-center">
+      <img src="https://i.ibb.co/1t83h0Dn/x.jpg" class="w-40 h-40 mb-4 rounded-full shadow-lg" alt="Logo">
+      <h1 class="text-2xl font-bold mb-3">Karibu TWEVE LIVE</h1>
+      <p class="text-gray-300 max-w-2xl leading-relaxed text-sm sm:text-base">
+        <strong>TWEVE LIVE</strong> ni jukwaa rahisi na la bure la kutazama televisheni mubashara na maudhui ya burudani mtandaoni.
+        Hakuna programu ya kusakinisha – fungua tu kwenye kivinjari (simu, tablet au kompyuta).
+      </p>
+      <div class="mt-6 grid gap-4 text-left max-w-3xl w-full">
+        <div class="bg-slate-800/60 rounded-xl p-4">
+          <h3 class="font-semibold mb-2 text-cyan-300">Marekebisho Mapya</h3>
+          <ul class="list-disc pl-5 text-gray-300 text-sm sm:text-base space-y-1">
+            <li>🎯 <b>Player</b> huonekana <b>baada</b> ya kuchagua channel kwenye <b>Live TV</b> au <b>Online Movie</b>.</li>
+            <li>🎬 Kurasa ya <b>Movies</b> sasa ina sehemu mbili: <b>Online Movies</b> (huzicheza mtandaoni) na <b>Pakua Tu</b> (download).</li>
+            <li>🧭 Urambazaji wa chini umebaki kama ulivyo: Home, Live TV, Movies.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE TV PAGE -->
+    <section id="livePage" class="hidden p-4">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold">Live TV Channels</h2>
+        <span class="text-xs text-slate-400">Bofya chaneli yoyote kuonesha player juu</span>
+      </div>
+      <div id="channelListLive" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+    </section>
+
+    <!-- MOVIES PAGE -->
+    <section id="moviesPage" class="hidden p-4">
+      <!-- Online Movies (streaming) -->
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-xl font-semibold">Movies — Online Movie (Cheza Mtandaoni)</h2>
+        <span class="text-xs text-slate-400">Bofya movie ku-play juu kwenye player</span>
+      </div>
+      <div class="row-scroll mb-6" id="onlineMoviesRow"></div>
+
+      <!-- Download-only Movies -->
+      <div class="flex items-center justify-between mb-2 mt-6">
+        <h2 class="text-xl font-semibold">Movies — Pakua Tu</h2>
+        <span class="text-xs text-slate-400">Hizi hazichezwi mtandaoni</span>
+      </div>
+      <div class="row-scroll" id="moviesRow"></div>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button id="btnHome" class="active" onclick="showPage('home')">🏡<span>Home</span></button>
+    <button id="btnLive" onclick="showPage('live')">📺<span>Live TV</span></button>
+    <button id="btnMovies" onclick="showPage('movies')">🎬<span>Movies</span></button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
